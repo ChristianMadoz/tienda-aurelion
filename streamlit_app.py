@@ -45,7 +45,7 @@ with st.expander('Map Visualization: Ventas por Provincia'):
 
     # 2. Cargar el archivo GeoJSON de Argentina (Provincias)
     # URL pública del GeoJSON desde datos.gob.ar
-    geojson_url = 'https://infra.datos.gob.ar/georef/provincias'
+    geo_data = "https://raw.githubusercontent.com/mgaitan/departamentos_argentina/refs/heads/master/departamentos-cordoba.json"
     
     # Intentamos cargar el GeoJSON
     try:
@@ -60,15 +60,15 @@ with st.expander('Map Visualization: Ventas por Provincia'):
         # 4. Crear el mapa coroplético (Choropleth Map)
         folium.Choropleth(
             geo_data=geo_data,
-            name='Ventas por Provincia',
-            data=ventas_por_provincia,
-            columns=['ciudad', 'importe'],
-            key_on='feature.properties.provincias', # CLAVE CRUCIAL: Debe coincidir con el nombre en el GeoJSON
-            fill_color='YlOrRd', # Esquema de color (Amarillo a Rojo)
+            name="choropleth",
+            data=df,
+            columns=["departamento","importe"],
+            key_on="feature.properties.departamento", 
+            fill_color ='YlGn',
             fill_opacity=0.7,
             line_opacity=0.2,
-            legend_name='Importe Total de Ventas ($)',
-            highlight=True # Resalta la provincia al pasar el mouse
+            #threshold_scale=[0, 200000, 400000, 600000, 800000, 1000000],
+            legend_name=f"Importe total",
         ).add_to(m)
         
         # Añadir control de capas (opcional)
