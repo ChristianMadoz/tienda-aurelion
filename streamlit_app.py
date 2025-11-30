@@ -30,7 +30,7 @@ with st.expander('Map Visualization'):
   #coordenadas_centro = [34.0, 63.0]
   # ... (código de Folium para crear el mapa 'm' de arriba) ...
 
-  m = folium.Map(location=[-33.43144133557529, -63.28125000000001], zoom_start=13)
+  m = folium.Map(location=[-33.43144133557529, -63.28125000000001], zoom_start=4)
   folium.Marker(location=[-33.43144133557529, -63.28125000000001]).add_to(m)
   
   
