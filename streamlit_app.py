@@ -76,14 +76,15 @@ with st.expander('Map Visualization: Ventas por Provincia'):
 
         # 5. Renderizar el mapa en Streamlit
         st_folium(m, width=800, height=500)
+      
         # Solo intenta escribir los datos si map_data no es None
-                if map_data is not None:
+        if map_data is not None:
                     #st.write("Datos del mapa (solo para depurar):")
                     #st.write(map_data) 
-                    pass # Usamos 'pass' si realmente no queremos mostrar nada
-                else:
-                  st.error(f"Error al descargar el GeoJSON. Código de estado: {response.status_code}")
-                  st.write("Contenido de la respuesta:", response.text)
+        pass # Usamos 'pass' si realmente no queremos mostrar nada
+        else:
+          st.error(f"Error al descargar el GeoJSON. Código de estado: {response.status_code}")
+          st.write("Contenido de la respuesta:", response.text)
 
     except Exception as e:
         st.error(f"Error al cargar el mapa coroplético o los datos: {e}")
