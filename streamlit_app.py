@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
-
-
+import folium
+from streamlit_folium import st_folium
 st.title('🎈 Machine Learning Tienda Aurelion App')
 
 st.info('Modelo de Machine Learning para tienda!')
@@ -24,6 +24,10 @@ with st.expander('Data Visualization'):
 
 
 with st.expander('Map Visualization'):
-  st.map(data=df, lat = 34, lon = 63, width ="stretch", height=500)
+  #st.map(df, lat, lon, width ="stretch", height=500)
+  #st.map(datos=Ninguno, *, latitud=Ninguno, longitud=Ninguno, color=Ninguno, tamaño=Ninguno, zoom=Ninguno, ancho="estirar", alto=500, ancho_del_contenedor_de_uso=Ninguno)
 
-#st.map(datos=Ninguno, *, latitud=Ninguno, longitud=Ninguno, color=Ninguno, tamaño=Ninguno, zoom=Ninguno, ancho="estirar", alto=500, ancho_del_contenedor_de_uso=Ninguno)
+  #coordenadas_centro = [34.0, 63.0]
+  m = folium.Map(location=[34.0, 63.0], zoom_start=12)
+  st_folium(m, width=700, height=500)
+
