@@ -55,7 +55,7 @@ with st.expander('Map Visualization: Ventas por Provincia'):
         geo_data = requests.get(geo_data).json()
 
         # 3. Crear el mapa base de Folium centrado en Argentina
-        m = folium.Map(location=[-34.6037, -58.3816], zoom_start=4)
+        m = folium.Map(location=[-34.6037, -58.3816], zoom_start=7)
 
         # 4. Crear el mapa coroplético (Choropleth Map)
         folium.Choropleth(
