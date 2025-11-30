@@ -20,4 +20,4 @@ with st.expander('Data'):
 
 with st.expander('Data Visualization'):
   st.bar_chart(data=df, x = 'id_producto', y = 'fecha')
-st.bar_chart(datos=Ninguno, *, x=Ninguno, y=Ninguno, etiqueta_x=Ninguno, etiqueta_y=Ninguno, color=Ninguno, horizontal=Falso, orden=Verdadero, pila=Ninguno, ancho="estirar", alto="contenido", ancho_del_contenedor_de_uso=Ninguno)
+st.bar_chart(datos=Ninguno, x=Ninguno, y=Ninguno, etiqueta_x=Ninguno, etiqueta_y=Ninguno, color=Ninguno, horizontal=Falso, orden=Verdadero, pila=Ninguno, ancho="estirar", alto="contenido", ancho_del_contenedor_de_uso=Ninguno)
