@@ -62,7 +62,7 @@ with st.expander('Map Visualization: Ventas por Provincia'):
             geo_data=geo_data,
             name="choropleth",
             data=df,
-            columns=["departamento","importe"],
+            columns=["ciudad","importe"],
             key_on="feature.properties.departamento", 
             fill_color ='YlGn',
             fill_opacity=0.7,
