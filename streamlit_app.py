@@ -21,3 +21,9 @@ with st.expander('Data'):
 with st.expander('Data Visualization'):
   st.bar_chart(data=df, x = 'ciudad', y = 'id_venta',y_label = 'Monto Ventas')
   #st.bar_chart(datos=df, x=Ninguno, y=Ninguno, etiqueta_x=Ninguno, etiqueta_y=Ninguno, color=Ninguno, horizontal=Falso, orden=Verdadero, pila=Ninguno, ancho="estirar", alto="contenido", ancho_del_contenedor_de_uso=Ninguno)
+
+
+with st.expander('Map Visualization'):
+  st.map(data=df, latitude = 34, longitude = 63, width ="estirar", height=500)
+
+#st.map(datos=Ninguno, *, latitud=Ninguno, longitud=Ninguno, color=Ninguno, tamaño=Ninguno, zoom=Ninguno, ancho="estirar", alto=500, ancho_del_contenedor_de_uso=Ninguno)
