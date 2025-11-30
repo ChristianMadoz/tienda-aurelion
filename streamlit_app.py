@@ -19,4 +19,4 @@ with st.expander('Data'):
   y
 
 with st.expander('Data Visualization'):
-  st.st.bar_chart(data=df, x = 'id_producto', y = 'fecha', color = 'ciudad')
+  st.bar_chart(data=df, x = 'id_producto', y = 'fecha', color = 'ciudad')
