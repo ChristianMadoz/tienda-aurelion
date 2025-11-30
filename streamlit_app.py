@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import folium
+import json # Necesario para cargar el GeoJSON
 from streamlit_folium import st_folium
 st.title('🎈 Machine Learning Tienda Aurelion App')
 
@@ -27,20 +28,59 @@ with st.expander('Map Visualization'):
   #st.map(df, lat, lon, width ="stretch", height=500)
   #st.map(datos=Ninguno, *, latitud=Ninguno, longitud=Ninguno, color=Ninguno, tamaño=Ninguno, zoom=Ninguno, ancho="estirar", alto=500, ancho_del_contenedor_de_uso=Ninguno)
 
-  #coordenadas_centro = [34.0, 63.0]
-  # ... (código de Folium para crear el mapa 'm' de arriba) ...
-
   m = folium.Map(location=[-33.43144133557529, -63.28125000000001], zoom_start=4)
   folium.Marker(location=[-33.43144133557529, -63.28125000000001]).add_to(m)
   
+
+  st.set_page_config(layout="wide") # Opcional: mejora la visualización del mapa ancho
   
   # Renderiza el mapa y captura el resultado de la interacción del usuario
   map_data = st_folium(m, width=700, height=500)
 
-  if map_data is not None:
-      st.write(map_data)
-  else:
-      st.info("Haz clic en el mapa o en el marcador para ver los datos de interacción aquí.")
-  st.write("Datos del último clic en el mapa:")
-  # map_data contendrá un diccionario con información como 'last_clicked'
-  st.write(map_data)
+  with st.expander('Map Visualization: Ventas por Provincia'):
+    
+    # 1. Agrupar los datos por provincia y sumar el importe total de ventas
+    # Asumimos que la columna 'ciudad' existe en tu CSV. Si no, cámbiala por la columna correcta.
+    ventas_por_provincia = df.groupby('ciudad')['importe'].sum().reset_index()
+
+    # 2. Cargar el archivo GeoJSON de Argentina (Provincias)
+    # URL pública del GeoJSON desde datos.gob.ar
+    geojson_url = 'raw.githubusercontent.com'
+    
+    # Intentamos cargar el GeoJSON
+    try:
+        # Cargar el archivo JSON para que Folium lo use
+        # En una app real, es mejor descargarlo y guardarlo localmente si el enlace cambia
+        import requests
+        geo_data = requests.get(geojson_url).json()
+
+        # 3. Crear el mapa base de Folium centrado en Argentina
+        m = folium.Map(location=[-34.6037, -58.3816], zoom_start=4)
+
+        # 4. Crear el mapa coroplético (Choropleth Map)
+        folium.Choropleth(
+            geo_data=geo_data,
+            name='Ventas por Provincia',
+            data=ventas_por_provincia,
+            columns=['ciudad', 'importe'],
+            key_on='feature.properties.nombre', # CLAVE CRUCIAL: Debe coincidir con el nombre en el GeoJSON
+            fill_color='YlOrRd', # Esquema de color (Amarillo a Rojo)
+            fill_opacity=0.7,
+            line_opacity=0.2,
+            legend_name='Importe Total de Ventas ($)',
+            highlight=True # Resalta la provincia al pasar el mouse
+        ).add_to(m)
+        
+        # Añadir control de capas (opcional)
+        folium.LayerControl().add_to(m)
+
+        # 5. Renderizar el mapa en Streamlit
+        st_folium(m, width=800, height=500)
+
+    except Exception as e:
+        st.error(f"Error al cargar el mapa coroplético o los datos: {e}")
+        st.warning("Asegúrate de que la columna 'provincia' exista en tu CSV y que los nombres de provincia coincidan con el GeoJSON.")    
+  
+#st.write("Datos del último clic en el mapa:")
+# map_data contendrá un diccionario con información como 'last_clicked'
+#st.write(map_data)
