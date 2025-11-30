@@ -24,6 +24,6 @@ with st.expander('Data Visualization'):
 
 
 with st.expander('Map Visualization'):
-  st.map(data=df, latitude = 34°, longitude = 63°, width ="stretch", height=500)
+  st.map(data=df, latitude = '34°', longitude = '63°', width ="stretch", height=500)
 
 #st.map(datos=Ninguno, *, latitud=Ninguno, longitud=Ninguno, color=Ninguno, tamaño=Ninguno, zoom=Ninguno, ancho="estirar", alto=500, ancho_del_contenedor_de_uso=Ninguno)
