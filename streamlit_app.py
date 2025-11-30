@@ -18,6 +18,6 @@ with st.expander('Data'):
 
 
   st.write('**Y**')
-  y = df.('nombre_producto')
+  y = df.nombre_producto
   y
   
