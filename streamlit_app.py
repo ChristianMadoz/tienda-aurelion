@@ -45,7 +45,7 @@ with st.expander('Map Visualization: Ventas por Provincia'):
 
     # 2. Cargar el archivo GeoJSON de Argentina (Provincias)
     # URL pública del GeoJSON desde datos.gob.ar
-    geojson_url = 'https://raw.githubusercontent.com/mgaitan/departamentos_argentina/refs/heads/master/departamentos-cordoba.json'
+    geojson_url = 'https://raw.githubusercontent.com/mgaitan/departamentos_argentina/fd874382b76c9e85542c662963647cae9a05d522/departamentos-argentina.topojson'
     
     # Intentamos cargar el GeoJSON
     try:
