@@ -36,7 +36,11 @@ with st.expander('Map Visualization'):
   
   # Renderiza el mapa y captura el resultado de la interacción del usuario
   map_data = st_folium(m, width=700, height=500)
-  
+
+  if map_data is not None:
+      st.write(map_data)
+  else:
+      st.info("Haz clic en el mapa o en el marcador para ver los datos de interacción aquí.")
   st.write("Datos del último clic en el mapa:")
   # map_data contendrá un diccionario con información como 'last_clicked'
   st.write(map_data)
