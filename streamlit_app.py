@@ -19,4 +19,4 @@ with st.expander('Data'):
   y
 
 with st.expander('Data Visualization'):
-  st.scatter_chart(data=df, x = 'productos', y = 'fecha', color = 'ciudad')
+  st.scatter_chart(data=df, x = 'id_producto', y = 'fecha', color = 'ciudad')
