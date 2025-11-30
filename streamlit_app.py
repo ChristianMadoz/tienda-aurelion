@@ -10,5 +10,5 @@ st.info('Modelo de Machine Learning para tienda!')
 #csv_url = 'https://github.com/ChristianMadoz/data/blob/main/df_aurelion.csv?plain=1'
 #df = pd.read_csv(csv_url)
 
-df = pd.read_csv('https://github.com/ChristianMadoz/data/blob/main/df_aurelion.csv?plain=1')
+df = pd.read_csv('https://raw.githubusercontent.com/ChristianMadoz/data/refs/heads/main/df_aurelion.csv')
 df
