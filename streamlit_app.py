@@ -28,6 +28,15 @@ with st.expander('Map Visualization'):
   #st.map(datos=Ninguno, *, latitud=Ninguno, longitud=Ninguno, color=Ninguno, tamaño=Ninguno, zoom=Ninguno, ancho="estirar", alto=500, ancho_del_contenedor_de_uso=Ninguno)
 
   #coordenadas_centro = [34.0, 63.0]
-  m = folium.Map(location=[34.0, 63.0], zoom_start=12)
-  st_folium(m, width=700, height=500)
+  # ... (código de Folium para crear el mapa 'm' de arriba) ...
 
+  m = folium.Map(location=[37.7749, -122.4194], zoom_start=13)
+  folium.Marker(location=[37.7749, -122.4194]).add_to(m)
+  
+  
+  # Renderiza el mapa y captura el resultado de la interacción del usuario
+  map_data = st_folium(m, width=700, height=500)
+  
+  st.write("Datos del último clic en el mapa:")
+  # map_data contendrá un diccionario con información como 'last_clicked'
+  st.write(map_data)
