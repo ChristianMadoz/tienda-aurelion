@@ -52,7 +52,7 @@ with st.expander('Map Visualization: Ventas por Provincia'):
         # Cargar el archivo JSON para que Folium lo use
         # En una app real, es mejor descargarlo y guardarlo localmente si el enlace cambia
         import requests
-        geo_data = requests.get(geojson_url).json()
+        geo_data = requests.get(geo_data).json()
 
         # 3. Crear el mapa base de Folium centrado en Argentina
         m = folium.Map(location=[-34.6037, -58.3816], zoom_start=4)
