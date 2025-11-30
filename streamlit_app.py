@@ -37,7 +37,7 @@ with st.expander('Map Visualization'):
   # Renderiza el mapa y captura el resultado de la interacción del usuario
   map_data = st_folium(m, width=700, height=500)
 
-  with st.expander('Map Visualization: Ventas por Provincia'):
+with st.expander('Map Visualization: Ventas por Provincia'):
     
     # 1. Agrupar los datos por provincia y sumar el importe total de ventas
     # Asumimos que la columna 'ciudad' existe en tu CSV. Si no, cámbiala por la columna correcta.
@@ -45,7 +45,7 @@ with st.expander('Map Visualization'):
 
     # 2. Cargar el archivo GeoJSON de Argentina (Provincias)
     # URL pública del GeoJSON desde datos.gob.ar
-    geojson_url = 'https://infra.datos.gob.ar/georef/provincias'
+    geojson_url = 'raw.githubusercontent.com'
     
     # Intentamos cargar el GeoJSON
     try:
