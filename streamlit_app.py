@@ -63,7 +63,7 @@ with st.expander('Map Visualization: Ventas por Provincia'):
             name='Ventas por Provincia',
             data=ventas_por_provincia,
             columns=['ciudad', 'importe'],
-            key_on='feature.properties.departamento', # CLAVE CRUCIAL: Debe coincidir con el nombre en el GeoJSON
+            key_on='feature.properties.provincias', # CLAVE CRUCIAL: Debe coincidir con el nombre en el GeoJSON
             fill_color='YlOrRd', # Esquema de color (Amarillo a Rojo)
             fill_opacity=0.7,
             line_opacity=0.2,
