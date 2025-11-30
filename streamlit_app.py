@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-import folium
+import folium as m
 from streamlit_folium import st_folium
 st.title('🎈 Machine Learning Tienda Aurelion App')
 
