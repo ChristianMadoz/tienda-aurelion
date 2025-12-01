@@ -29,7 +29,10 @@ with st.expander('Map Visualization'):
   #st.map(datos=Ninguno, *, latitud=Ninguno, longitud=Ninguno, color=Ninguno, tamaño=Ninguno, zoom=Ninguno, ancho="estirar", alto=500, ancho_del_contenedor_de_uso=Ninguno)
 
   m = folium.Map(location=[-33.43144133557529, -63.28125000000001], zoom_start=4)
-  folium.Marker(location=[-33.43144133557529, -63.28125000000001]).add_to(m)
+  url = 'https://raw.githubusercontent.com/mgaitan/departamentos_argentina/refs/heads/master/departamentos-cordoba.json'
+  folium.GeoJson(url).add_to(m)
+  
+  #folium.Marker(location=[-33.43144133557529, -63.28125000000001]).add_to(m)
   
   st.set_page_config(layout="wide") # Opcional: mejora la visualización del mapa ancho
   
@@ -39,6 +42,7 @@ with st.expander('Map Visualization'):
 with st.expander('Map Visualization: Ventas por Provincia'):
     # 1. Agrupar los datos por provincia y sumar el importe total de ventas
     # Asumimos que la columna 'ciudad' existe en tu CSV. Si no, cámbiala por la columna correcta.
+    
     ventas_por_provincia = df.groupby('ciudad')['importe'].sum().reset_index()
 
     # 2. Cargar el archivo GeoJSON de Argentina (Provincias)
