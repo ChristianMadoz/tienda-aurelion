@@ -101,14 +101,8 @@ with st.expander('Map Visualization: Ventas por Departamento (Interactivo)'):
             if map_data is not None and "last_active_feature" in map_data:
                 # Capturar el nombre del departamento que fue clickeado/activo
                 depto_seleccionado = map_data["last_active_feature"]["properties"]["departamento"]
-                st.success(f"Departamento seleccionado: **{depto_seleccionado}**")
+                st.success(f"Departamento seleccionado: **{depto_seleccionado}**")              
             
-            # Añadir control de capas
-            folium.LayerControl().add_to(m_choropleth)
-
-            # 5. Renderizar el mapa en Streamlit
-            st_folium(m_choropleth, width=750, height=500)
-
         else:
             st.error(f"Error al descargar el GeoJSON. Código de estado: {response.status_code}")
 
