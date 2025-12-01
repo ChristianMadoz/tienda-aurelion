@@ -33,7 +33,7 @@ with st.expander('Map Visualization (Ventas por Departamento)'):
     else:
         # 1. Agrupar los datos de ventas por departamento
         ventas_por_depto = df.groupby('ciudad')['importe'].sum().reset_index()
-        url_cordoba_geojson = 'raw.githubusercontent.com'
+        url_cordoba_geojson = 'https://raw.githubusercontent.com/mgaitan/departamentos_argentina/refs/heads/master/departamentos-cordoba.json''
 
         try:
             # 2. Descargar y cargar el GeoJSON
