@@ -68,6 +68,22 @@ with st.expander('Map Visualization: Ventas por Departamento (Mapa Coroplético)
                 line_opacity=0.2,
                 legend_name="Importe total de ventas ($)"
             ).add_to(m_choropleth)
+             folium.GeoJson(geo_json_data,
+                name='Interactividad',
+                tooltip=folium.features.GeoJsonTooltip(fields=['departamento'], aliases=['Departamento:']),
+                highlight_function=lambda x: {'weight': 3, 'color': 'black', 'dashArray': '1,1'}).add_to(m_choropleth)
+    
+            # Añadir control de capas (opcional)
+            folium.LayerControl().add_to(m_choropleth)
+    
+            # 6. Renderizar el mapa en Streamlit y CAPTURAR DATOS DE INTERACCIÓN
+            map_data = st_folium(m_choropleth, width=750, height=500)
+            
+            # 7. Procesar la selección del usuario
+            if map_data is not None and "last_active_feature" in map_data:
+                # Capturar el nombre del departamento que fue clickeado/activo
+                depto_seleccionado = map_data["last_active_feature"]["properties"]["departamento"]
+                st.success(f"Departamento seleccionado: **{depto_seleccionado}**")
             
             # Añadir control de capas
             folium.LayerControl().add_to(m_choropleth)
