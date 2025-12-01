@@ -67,7 +67,7 @@ with st.expander('Map Visualization: Ventas por Provincia'):
             line_opacity=0.2,
             #threshold_scale=[0, 200000, 400000, 600000, 800000, 1000000],
             legend_name="Importe total (%)",)
-      .add_to(m)
+        .add_to(m)
         folium.geodata(geo_data, highlight_function=lambda feature: {"fillColor": ("green" if "e" in feature["properties"]["name"].lower() else "#ffff00"),},)).add_to(m)
 
         #folium.GeoJson(geo_data, highlight_function=lambda feature: {"fillColor": ("green" if "e" in feature["properties"]["name"].lower() else "#ffff00"),},).add_to(m)
