@@ -58,7 +58,7 @@ with st.expander('Map Visualization: Ventas por Provincia'):
         # 4. Crear el mapa coroplético (Choropleth Map)
         folium.Choropleth(
             geo_data=geo_data,
-            name="choropleth",
+            name="departamento",
             data=df,
             columns=["ciudad","importe"],
             key_on="feature.properties.departamento", 
