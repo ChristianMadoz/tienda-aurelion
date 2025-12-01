@@ -61,7 +61,7 @@ with st.expander('Map Visualization: Ventas por Provincia'):
 
         # 4. Crear el mapa coroplético (Choropleth Map)
         folium.Choropleth(
-            geo_data=geo_json_data,
+            geo_json_data=geo_json_data,
             name="ciudad",
             data=ventas_por_provincia,
             columns=["ciudad","importe"],
@@ -71,9 +71,9 @@ with st.expander('Map Visualization: Ventas por Provincia'):
             line_opacity=0.2,
             #threshold_scale=[0, 200000, 400000, 600000, 800000, 1000000],
             legend_name="Importe total (%)",).add_to(m)
-        folium.GeoJson(geo_data, highlight_function=lambda feature: {"fillColor": ("green" if "e" in feature["properties"]["name"].lower() else "#ffff00"),},).add_to(m)
+        folium.GeoJson(geo_json_data, highlight_function=lambda feature: {"fillColor": ("green" if "e" in feature["properties"]["name"].lower() else "#ffff00"),},).add_to(m)
 
-        #folium.GeoJson(geo_data, highlight_function=lambda feature: {"fillColor": ("green" if "e" in feature["properties"]["name"].lower() else "#ffff00"),},).add_to(m)
+        #folium.GeoJson(geo_json_data, highlight_function=lambda feature: {"fillColor": ("green" if "e" in feature["properties"]["name"].lower() else "#ffff00"),},).add_to(m)
         # Añadir control de capas (opcional)
         folium.LayerControl().add_to(m)
 
