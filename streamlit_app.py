@@ -54,7 +54,7 @@ with st.expander('Map Visualization (Ventas por Departamento)'):
                 feature['properties']['importe_vendido'] = f"${importe_vendido:,.2f}"
 
             # 4. Crear el mapa base de Folium centrado en Córdoba
-            m_choropleth = folium.Map(location=[-31.4167, -64.1833], zoom_start=7)
+            m_choropleth = folium.Map(location=[-31.4167, -64.1833], zoom_start=4)
 
             # 5. Crear la capa coroplética (los colores)
             folium.Choropleth(
@@ -85,7 +85,7 @@ with st.expander('Map Visualization (Ventas por Departamento)'):
             folium.LayerControl().add_to(m_choropleth)
 
             # 8. Renderizar el mapa y capturar la interacción
-            map_data = st_folium(m_choropleth, width=750, height=500)
+            map_data = st_folium(m_choropleth, width=750, height=650)
 
             # 9. Procesar la selección del usuario
             if map_data and "last_active_feature" in map_data:
