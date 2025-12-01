@@ -37,7 +37,7 @@ with st.expander('Map Visualization'):
   st.set_page_config(layout="wide") # Opcional: mejora la visualización del mapa ancho
   
   # Renderiza el mapa y captura el resultado de la interacción del usuario
-  map_data = st_folium(m, width=700, height=500)
+  # map_data = st_folium(m, width=700, height=500)
 
 with st.expander('Map Visualization: Ventas por Provincia'):
     # 1. Agrupar los datos por provincia y sumar el importe total de ventas
@@ -47,21 +47,21 @@ with st.expander('Map Visualization: Ventas por Provincia'):
 
     # 2. Cargar el archivo GeoJSON de Argentina (Provincias)
     # URL pública del GeoJSON desde datos.gob.ar
-    geo_json_data = "https://raw.githubusercontent.com/mgaitan/departamentos_argentina/refs/heads/master/departamentos-cordoba.json"
+    # geo_json_data = "https://raw.githubusercontent.com/mgaitan/departamentos_argentina/refs/heads/master/departamentos-cordoba.json"
     
     # Intentamos cargar el GeoJSON
     try:
         # Cargar el archivo JSON para que Folium lo use
         # En una app real, es mejor descargarlo y guardarlo localmente si el enlace cambia
         import requests
-        geo_data = requests.get(geo_json_data).json()
+        geo_json_data = requests.get(url).json()
 
         # 3. Crear el mapa base de Folium centrado en Argentina
         m = folium.Map(location=[-34.6037, -58.3816], zoom_start=7)
 
         # 4. Crear el mapa coroplético (Choropleth Map)
         folium.Choropleth(
-            geo_data=geo_data,
+            geo_data=geo_json_data,
             name="ciudad",
             data=ventas_por_provincia,
             columns=["ciudad","importe"],
