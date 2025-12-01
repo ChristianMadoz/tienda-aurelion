@@ -31,14 +31,12 @@ with st.expander('Map Visualization'):
   m = folium.Map(location=[-33.43144133557529, -63.28125000000001], zoom_start=4)
   folium.Marker(location=[-33.43144133557529, -63.28125000000001]).add_to(m)
   
-
   st.set_page_config(layout="wide") # Opcional: mejora la visualización del mapa ancho
   
   # Renderiza el mapa y captura el resultado de la interacción del usuario
   map_data = st_folium(m, width=700, height=500)
 
 with st.expander('Map Visualization: Ventas por Provincia'):
-    
     # 1. Agrupar los datos por provincia y sumar el importe total de ventas
     # Asumimos que la columna 'ciudad' existe en tu CSV. Si no, cámbiala por la columna correcta.
     ventas_por_provincia = df.groupby('ciudad')['importe'].sum().reset_index()
@@ -71,7 +69,7 @@ with st.expander('Map Visualization: Ventas por Provincia'):
             legend_name="Importe total (%)",
         ).add_to(m)
 
-        folium.GeoJson(geo_json_data, highlight_function=lambda feature: {"fillColor": ("green" if "e" in feature["properties"]["name"].lower() else "#ffff00"),},).add_to(m)
+        folium.GeoJson(geo_data, highlight_function=lambda feature: {"fillColor": ("green" if "e" in feature["properties"]["name"].lower() else "#ffff00"),},).add_to(m)
         # Añadir control de capas (opcional)
         folium.LayerControl().add_to(m)
 
