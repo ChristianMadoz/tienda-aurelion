@@ -24,10 +24,7 @@ with st.expander('Data'):
     y = df.nombre_producto
     st.dataframe(y)
     
-    st.write('Ventas por ciudad')
-    ventas = df.ventas_por_depto
-    st.dataframe(ventas)
-
+    
 with st.expander('Data Visualization'):
     st.bar_chart(data=df, x='ciudad', y='importe', use_container_width=True)
 
