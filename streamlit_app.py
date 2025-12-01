@@ -68,14 +68,14 @@ with st.expander('Map Visualization: Ventas por Provincia'):
             fill_opacity=0.7,
             line_opacity=0.2,
             #threshold_scale=[0, 200000, 400000, 600000, 800000, 1000000],
-            legend_name=f"Importe total",
+            legend_name="Importe total (%)",
         ).add_to(m)
         
         # Añadir control de capas (opcional)
         folium.LayerControl().add_to(m)
 
         # 5. Renderizar el mapa en Streamlit
-        st_folium(m, width=800, height=500)
+        st_folium(m, width=750, height=500)
       
         # Solo intenta escribir los datos si map_data no es None
         if map_data is not None:
