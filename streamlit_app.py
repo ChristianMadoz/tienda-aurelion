@@ -71,11 +71,7 @@ with st.expander('Map Visualization: Ventas por Provincia'):
             legend_name="Importe total (%)",
         ).add_to(m)
 
-      folium.GeoJson(geo_json_data, highlight_function=lambda feature: {"fillColor": (
-            "green" if "e" in feature["properties"]["name"].lower() else "#ffff00"
-        ),
-    },
-).add_to(m)
+        folium.GeoJson(geo_json_data, highlight_function=lambda feature: {"fillColor": ("green" if "e" in feature["properties"]["name"].lower() else "#ffff00"),},).add_to(m)
         # Añadir control de capas (opcional)
         folium.LayerControl().add_to(m)
 
