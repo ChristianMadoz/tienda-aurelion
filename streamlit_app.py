@@ -13,7 +13,7 @@ st.info('Modelo de Machine Learning para tienda!')
 
 with st.expander('Data'):
     st.write('**Raw Data**')
-    df = pd.read_csv('raw.githubusercontent.com')
+    df = pd.read_csv('https://raw.githubusercontent.com/ChristianMadoz/data/refs/heads/main/dataset_ventas_unificado_completo.csv')
     st.dataframe(df)
     st.write('**X**')
     x = df.drop('nombre_producto', axis=1)
