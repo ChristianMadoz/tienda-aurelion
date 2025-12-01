@@ -63,7 +63,7 @@ with st.expander('Map Visualization: Ventas por Provincia'):
         folium.Choropleth(
             geo_data=geo_json_data,
             name="ciudad",
-            data=ventas_por_provincia,
+            data='ventas_por_provincia',
             columns=["ciudad","importe"],
             key_on="feature.properties.departamento", 
             fill_color ='YlGn',
