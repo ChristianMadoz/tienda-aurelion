@@ -39,19 +39,36 @@ with st.expander('Map Visualization (Mapa Base de Córdoba)'):
     # Renderizamos el mapa base
     st_folium(m, width=700, height=500)
 
-with st.expander('Map Visualization: Ventas por Departamento (Mapa Coroplético)'):
+with st.expander('Map Visualization: Ventas por Departamento (Interactivo)'):
     
-    # 1. Agrupar los datos por la columna que coincida con el GeoJSON (asumo 'ciudad' es el nombre del departamento)
+    if 'ciudad' not in df.columns or 'importe' not in df.columns:
+        st.warning("Asegúrate de tener las columnas 'ciudad' e 'importe' en tu CSV.")
+        st.stop()
+        
+    # Agrupamos los datos
     ventas_por_depto = df.groupby('ciudad')['importe'].sum().reset_index()
-
-    # 2. URL del GeoJSON de departamentos de Córdoba
-    url_cordoba_geojson = 'https://raw.githubusercontent.com/mgaitan/departamentos_argentina/refs/heads/master/departamentos-cordoba.json'
+    url_cordoba_geojson = 'raw.githubusercontent.com'
     
     try:
-        # Cargar el archivo JSON
         response = requests.get(url_cordoba_geojson)
-        if response.status_code == 200:
-            geo_json_data = response.json()
+        if response.status_code != 200:
+            st.error("Error al descargar el GeoJSON de Córdoba.")
+            st.stop()
+            
+        geo_json_data = response.json()
+
+        # --- FUSIONAR DATOS: AÑADIMOS EL IMPORTE AL OBJETO JSON ---
+        # Recorremos cada departamento en el JSON y añadimos su importe de ventas
+        for feature in geo_json_data['features']:
+            depto_nombre = feature['properties']['departamento']
+            # Buscamos el importe en nuestro DataFrame de ventas agrupadas
+            importe = ventas_por_depto[ventas_por_depto['ciudad'] == depto_nombre]['importe']
+            
+            if not importe.empty:
+                # Añadimos una nueva propiedad al JSON llamada 'importe_vendido'
+                feature['properties']['importe_vendido'] = f"${importe.iloc[0]:,.2f}"
+            else:
+                feature['properties']['importe_vendido'] = "Sin ventas"
 
             # 3. Crear el mapa base de Folium centrado en Córdoba
             m_choropleth = folium.Map(location=[-31.4167, -64.1833], zoom_start=7)
