@@ -68,7 +68,8 @@ with st.expander('Map Visualization: Ventas por Departamento (Mapa Coroplético)
                 line_opacity=0.2,
                 legend_name="Importe total de ventas ($)"
             ).add_to(m_choropleth)
-             folium.GeoJson(geo_json_data,
+            
+            folium.GeoJson(geo_json_data,
                 name='Interactividad',
                 tooltip=folium.features.GeoJsonTooltip(fields=['departamento'], aliases=['Departamento:']),
                 highlight_function=lambda x: {'weight': 3, 'color': 'black', 'dashArray': '1,1'}).add_to(m_choropleth)
