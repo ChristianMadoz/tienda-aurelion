@@ -43,14 +43,14 @@ with st.expander('Map Visualization: Ventas por Provincia'):
 
     # 2. Cargar el archivo GeoJSON de Argentina (Provincias)
     # URL pública del GeoJSON desde datos.gob.ar
-    geo_data = "https://raw.githubusercontent.com/mgaitan/departamentos_argentina/refs/heads/master/departamentos-cordoba.json"
+    geo_json_data = "https://raw.githubusercontent.com/mgaitan/departamentos_argentina/refs/heads/master/departamentos-cordoba.json"
     
     # Intentamos cargar el GeoJSON
     try:
         # Cargar el archivo JSON para que Folium lo use
         # En una app real, es mejor descargarlo y guardarlo localmente si el enlace cambia
         import requests
-        geo_data = requests.get(geo_data).json()
+        geo_data = requests.get(geo_json_data).json()
 
         # 3. Crear el mapa base de Folium centrado en Argentina
         m = folium.Map(location=[-34.6037, -58.3816], zoom_start=7)
@@ -67,7 +67,7 @@ with st.expander('Map Visualization: Ventas por Provincia'):
             line_opacity=0.2,
             #threshold_scale=[0, 200000, 400000, 600000, 800000, 1000000],
             legend_name="Importe total (%)",).add_to(m)
-        folium.geodata(geo_data, highlight_function=lambda feature: {"fillColor": ("green" if "e" in feature["properties"]["name"].lower() else "#ffff00"),},).add_to(m)
+        folium.GeoJson(geo_data, highlight_function=lambda feature: {"fillColor": ("green" if "e" in feature["properties"]["name"].lower() else "#ffff00"),},).add_to(m)
 
         #folium.GeoJson(geo_data, highlight_function=lambda feature: {"fillColor": ("green" if "e" in feature["properties"]["name"].lower() else "#ffff00"),},).add_to(m)
         # Añadir control de capas (opcional)
