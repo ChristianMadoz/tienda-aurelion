@@ -71,7 +71,7 @@ with st.expander('Map Visualization: Ventas por Departamento (Interactivo)'):
                 feature['properties']['importe_vendido'] = "Sin ventas"
 
             # 3. Crear el mapa base de Folium centrado en Córdoba
-            #m_choropleth = folium.Map(location=[-31.4167, -64.1833], zoom_start=7)
+            m_choropleth = folium.Map(location=[-31.4167, -64.1833], zoom_start=7)
 
             # 4. Crear el mapa coroplético (Choropleth Map)
             folium.Choropleth(
